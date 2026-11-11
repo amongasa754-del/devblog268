@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Серверы — DEVBlog 268</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<header class="navbar">
+    <a href="/" class="logo">DEV<span>268</span></a>
+    <nav>
+        <a href="/">Главная</a>
+        <a href="/news">Новости</a>
+        <a href="/servers">Серверы</a>
+        <a href="/about">О проекте</a>
+    </nav>
+    <a href="/login" class="admin-link">АДМИНКА</a>
+</header>
+
+<section class="servers-page">
+    <div class="servers-title">
+        <span class="eyebrow">CHOOSE YOUR BATTLEFIELD</span>
+        <h1>НАШИ <span>СЕРВЕРЫ</span></h1>
+        <p>Выбирай свой режим и отправляйся выживать.</p>
+    </div>
+
+    <div class="servers-grid">
+        {% for server in servers %}
+        <article class="server-card">
+            <div class="server-top">
+                <span class="server-status"><i></i> ПРОЕКТ</span>
+                <span class="server-mode">{{ server.mode }}</span>
+            </div>
+
+            <h2>{{ server.name }}</h2>
+
+            <div class="server-info">
+                <div><span>РЕЙТ</span><b>{{ server.rate }}</b></div>
+                <div><span>КОМАНДА</span><b>{{ server.team }}</b></div>
+                <div><span>ВАЙП</span><b>{{ server.wipe }}</b></div>
+            </div>
+
+            <div class="server-address">{{ server.address }}</div>
+
+            <button class="server-copy" onclick="copyAddress(this)" data-address="{{ server.address }}">
+                СКОПИРОВАТЬ АДРЕС
+            </button>
+        </article>
+        {% endfor %}
+    </div>
+</section>
+
+<footer>
+    <div class="logo">DEV<span>268</span></div>
+    <p>© 2026 DEVBlog 268. Неофициальный проект сообщества Rust.</p>
+</footer>
+
+<script>
+function copyAddress(button) {
+    const address = button.dataset.address;
+
+    if (address.includes('IP:PORT')) {
+        button.textContent = 'АДРЕС ЕЩЁ НЕ ДОБАВЛЕН';
+        return;
+    }
+
+    navigator.clipboard.writeText(address).then(() => {
+        button.textContent = 'СКОПИРОВАНО!';
+    }).catch(() => {
+        button.textContent = 'НЕ УДАЛОСЬ СКОПИРОВАТЬ';
+    });
+}
+</script>
+
+</body>
+</html>

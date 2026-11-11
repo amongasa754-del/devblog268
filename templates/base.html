@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}DEVBlog 268 — Rust Community{% endblock %}</title>
+  <meta name="description" content="DEVBlog 268 — игровой проект и сообщество Rust.">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<header class="topbar"><a class="brand" href="/">DEV<span>268</span></a><nav><a href="/">Главная</a><a href="/news">Новости</a><a href="/servers">Серверы</a><a href="/about">О проекте</a></nav><a class="nav-button" href="/servers">Начать играть</a></header>
+<main>{% with messages = get_flashed_messages(with_categories=true) %}{% if messages %}<div class="messages">{% for category, message in messages %}<div class="flash {{ category }}">{{ message }}</div>{% endfor %}</div>{% endif %}{% endwith %}{% block content %}{% endblock %}</main>
+<footer><div class="brand">DEV<span>268</span></div><p>Фанатский игровой проект. Не связан с Facepunch Studios.</p><div><a href="/news">Новости</a> · <a href="/servers">Серверы</a> · <a href="/login">Админ-панель</a></div></footer>
+</body></html>

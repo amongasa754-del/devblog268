@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEVBlog 268 — Rust Community</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<header class="navbar">
+    <a href="/" class="logo">DEV<span>268</span></a>
+
+    <nav>
+        <a href="/">Главная</a>
+        <a href="/news">Новости</a>
+        <a href="/servers">Серверы</a>
+        <a href="/about">О проекте</a>
+    </nav>
+
+    <a href="/login" class="admin-link">АДМИНКА</a>
+</header>
+
+<main>
+    <section class="hero">
+        <div class="hero-content">
+            <div class="status"><span></span> RUST COMMUNITY PROJECT</div>
+
+            <h1>WELCOME TO<br><span>DEVBlog 268</span></h1>
+
+            <p>
+                Твоя история выживания начинается здесь.
+                Исследуй мир, собирай ресурсы и создавай собственную империю.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="/servers" class="btn-primary">НАШИ СЕРВЕРЫ</a>
+                <a href="/news" class="btn-secondary">ПОСЛЕДНИЕ НОВОСТИ</a>
+            </div>
+        </div>
+
+        <div class="hero-number">268</div>
+        <div class="hero-bottom">SURVIVE. BUILD. FIGHT.</div>
+    </section>
+
+    <section class="section">
+        <div class="section-heading">
+            <div>
+                <span class="eyebrow">WHAT'S HAPPENING</span>
+                <h2>Последние новости</h2>
+            </div>
+            <a href="/news" class="all-link">ВСЕ НОВОСТИ →</a>
+        </div>
+
+        <div class="news-grid">
+            {% for post in posts %}
+            <article class="news-card">
+                <div class="news-label">{{ post.category }}</div>
+                <h3>{{ post.title }}</h3>
+                <p>{{ post.body }}</p>
+                <div class="news-date">{{ post.created_at }}</div>
+            </article>
+            {% else %}
+            <p>Пока новостей нет.</p>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section class="server-banner">
+        <div>
+            <span class="eyebrow">FIND YOUR PLACE</span>
+            <h2>ТВОЁ ВЫЖИВАНИЕ<br>НАЧИНАЕТСЯ СЕЙЧАС</h2>
+            <p>Выбирай сервер и присоединяйся к DEVBlog 268.</p>
+        </div>
+        <a href="/servers" class="btn-primary">ВЫБРАТЬ СЕРВЕР</a>
+    </section>
+</main>
+
+<footer>
+    <div class="logo">DEV<span>268</span></div>
+    <p>© 2026 DEVBlog 268. Неофициальный проект сообщества Rust.</p>
+</footer>
+
+</body>
+</html>
